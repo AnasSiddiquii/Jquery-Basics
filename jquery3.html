@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    
+    <ul>
+        <li><span id="span1">item1</span></li>
+    
+        <li><span id="span2">item2</span></li>
+    </ul>
+
+    <ul id="list">
+        <li><span id="span1">item1</span></li>
+
+        <li><span id="span2">item2</span></li>
+    </ul>
+
+    <ul id="list">
+        <li>child 1</li>
+        <li id="item1">child 2</li>
+        <li>child 3</li>
+        <li>child 4</li>
+        <li id="item2">child 5</li>
+        <li>child 6</li>
+    </ul>
+
+    <p id="pra">this is a p tag</p>
+    <button id="btn">click me</button>
+
+    <script>
+        
+        // relation traversing
+
+        // let elm = $("#span1").parent()           // setecting parent
+        // let elm = $("#span1").parents()          // setecting all parent
+        let elm = $("#span1").parentsUntil("body")  // setecting all parent until
+        elm.css("border","1px solid red")           // css throuht parent
+
+        // let list = $("#list").children()         // setecting all children
+        let list = $("#list").find("#span1,#span2") // findinding children
+        list.css("border","1px solid blue")         // css throuht children
+       
+        // let sib = $("#item1").siblings()         // setecting sibling
+        // let sib = $("#item1").next().next().nextAll()
+        let sib = $("#item1").nextUntil("#item2")   // setecting all sibling until
+        sib.css("border","1px solid green")         // css throuht sibling
+        
+        // let sibi = $("#item2").prev().prev().prevAll()
+        let sibi = $("#item2").prevUntil("#item1")  // setecting all sibling until
+        sibi.css("border","1px solid red")          // css throuht sibling
+
+        // no conflict
+        // $.noConflict()   // free the $ for other framework n use jQuery itself
+        let jQ = $.noConflict()  // assigning a variable 
+        jQ("#btn").click(function(){
+            jQ("#pra").text("text changed")
+        })
+
+
+
+    </script>
+
+</body>
+</html>
